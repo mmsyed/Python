@@ -23,44 +23,48 @@ def get_date(created):
     timestamp = datetime.datetime.fromtimestamp(created)
     return timestamp
 
-
-# try:
-#     res = subreddit.search("supreme", sort="new", limit=10)
-#     print("check1")
-#     for submission in res:
-#         print("check2")
-#         timestamp = get_date(submission.created_utc)
-#         # user = submission.user
-#         cur = datetime.datetime.now()
-#         # current_time = cur.strftime("%H:%M:%S")
-#         td = timestamp - cur if timestamp > cur else cur - timestamp               
-#         td_mins = int(round(td.total_seconds() / 60))
-#         print("check3")
-#         if (td_mins >= 144):
-#             reddit.redditor('chugg1t').message('TEST', 'This happened!')
-#             print("send_alert")
-# except:     
-#             print('error')
-
 for comment in subreddit.stream.comments():
     if keyphrase1 in comment.body:
-        keyword = comment.body.replace(keyphrase1, '')
-        keyword = keyphrase1.replace(" ", "")
-        while(True)
+        print("check0")
         try:
-            res = subreddit.search(keyword, sort="new", limit=10)
+            res = subreddit.search("supreme", sort="new", limit=10)
+            print("check1")
+            print(comment.user)
             for submission in res:
+                print("check2")
                 timestamp = get_date(submission.created_utc)
-                user = submission.user
+                # user = submission.user
                 cur = datetime.datetime.now()
                 # current_time = cur.strftime("%H:%M:%S")
-                td = timestamp - cur if timestamp > cur else cur - timestamp
+                td = timestamp - cur if timestamp > cur else cur - timestamp               
                 td_mins = int(round(td.total_seconds() / 60))
-                if (td_mins <= 145):
-                    reddit.redditor('prliift').message('TEST', 'This happened!')
+                print("check3")
+                if (td_mins >= 144):
+                    reddit.redditor('').message('TEST', 'This happened!')
                     print("send_alert")
         except:     
-            print('error')
-    else:
-        bool = False
+                    print('error')
+
+# for comment in subreddit.stream.comments():
+#     if keyphrase1 in comment.body:
+#         keyword = comment.body.replace(keyphrase1, '')
+#         keyword = keyphrase1.replace(" ", "")
+#         while(True):
+#         try:
+#             res = subreddit.search(keyword, sort="new", limit=10)
+#             for submission in res:
+#                 timestamp = get_date(submission.created_utc)
+#                 user = submission.user
+#                 cur = datetime.datetime.now()
+#                 # current_time = cur.strftime("%H:%M:%S")
+#                 td = timestamp - cur if timestamp > cur else cur - timestamp
+#                 td_mins = int(round(td.total_seconds() / 60))
+#                 if (td_mins <= 5):
+#                     reddit.redditor('user').message('TEST', 'This happened!')
+#                     print("send_alert")
+#                 sleep(300)
+#         except:     
+#             print('error')
+#     else:
+#         bool = False
 
