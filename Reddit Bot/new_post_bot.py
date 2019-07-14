@@ -23,27 +23,27 @@ def get_date(created):
     timestamp = datetime.datetime.fromtimestamp(created)
     return timestamp
 
-for comment in subreddit.stream.comments():
-    if keyphrase1 in comment.body:
-        print("check0")
-        try:
-            res = subreddit.search("supreme", sort="new", limit=10)
-            print("check1")
-            print(comment.user)
-            for submission in res:
-                print("check2")
-                timestamp = get_date(submission.created_utc)
+
+try:
+    print("check1")
+    res = subreddit.search("supreme", sort="new", limit=10)
+    while(True):
+        for submission in res:
+            print("check2")
+            timestamp = get_date(submission.created_utc)
                 # user = submission.user
-                cur = datetime.datetime.now()
+            cur = datetime.datetime.now()
                 # current_time = cur.strftime("%H:%M:%S")
-                td = timestamp - cur if timestamp > cur else cur - timestamp               
-                td_mins = int(round(td.total_seconds() / 60))
-                print("check3")
-                if (td_mins >= 144):
-                    reddit.redditor('').message('TEST', 'This happened!')
-                    print("send_alert")
-        except:     
-                    print('error')
+                # 
+            td = timestamp - cur if timestamp > cur else cur - timestamp               
+            td_mins = int(round(td.total_seconds() / 60))
+            print("check3")
+            if (td_mins <= 115):
+                print("author: " + str(submission.author))                    
+                # reddit.redditor('').message('TEST', 'This happened!')
+                print("send_alert")
+except:     
+        print('error retrieving posts')
 
 # for comment in subreddit.stream.comments():
 #     if keyphrase1 in comment.body:
